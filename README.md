@@ -1,3 +1,7 @@
 # AutomationWithArduino
 
-This was the code I used to automate my research internship experiment, because beforehand I'd have to manually increase the speed of the rotor by turning a knob, which resulted in inconsistent results and was quite uncomfortable.
+This was the code I used to automate my research internship experiment.
+
+For context, I was researching variable pitched fans in reverse-thrust jet engines. My experimental rig involed a model jet engine with its own rotor and also forward-speed fans above it to model the forward speed of an aeroplane. For me to increase or decrease the rotors rpm, I had to manually, and very slowly to record steady-state results, turn a knob on a control panel designed by the student that worked on this project before me. Whilst I did this my MATLAB script would plot the thrust measurements in live time. This meant that the results would vary based on how quickly and steadily I turned the knob. Also it meant I had to sit in an uncomfortable position for a long period of time, when obtaining repeat measurements to average. 
+
+As a solution to this, I wanted to automate the experiment, which I ended up doing by using an Arduino Leonardo and this code. It ramps the rotor RPM up and also down automatically, whilst also maintaining the manual knob-turning mode. This required a bit of thinking, because there were no other buttons to use, just the speed knob. I ended up using an LCD display to tell the user to wait 10 seconds without turning the knob if they want it to run automatically. Otherwise, turn the knob slightly forward and back before the 10 seconds, which results in a spike of voltage on the Arduino and lets it know that manual mode is desired.
