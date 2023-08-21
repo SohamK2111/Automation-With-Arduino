@@ -1,4 +1,3 @@
-//LiquidCrystal_I2C found in Arduino library manager
 #include <LiquidCrystal_I2C.h>
 
 LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x3F for a 16 chars and 2 line display
@@ -196,10 +195,13 @@ void loop() {
     lcd.print("(A) Speed: 000 %");
       
       
-    //ramp up speed - NOTE: change increment of wanted speed based on whether you're doing a forward or reverse
-    //loop experiment
+    //-------------ramp up speed - NOTE: uncomment and upload based on which experiment you're running-------------------------------
+
+    //forward loop experiment
+    /*
     for (int wanted_speed = 25; wanted_speed <= 100; wanted_speed ++) {
       ramp_loop(wanted_speed);
+
       if (wanted_speed < 30) {
         delay(2600);
       }
@@ -216,6 +218,26 @@ void loop() {
       ramp_loop(wanted_speed);
       delay(900);
     }
+    */
+
+    //reverse loop experiment
+    for (int wanted_speed = 25; wanted_speed <= 100; wanted_speed = wanted_speed + 5) {
+      ramp_loop(wanted_speed);
+      delay(900);
+    }
+      
+      //ramp down speed
+    for (int wanted_speed = 100; wanted_speed >=0 ; wanted_speed = wanted_speed = wanted_speed - 1) {
+      ramp_loop(wanted_speed);
+      
+      if (wanted_speed > 95) {
+        delay(2600);
+      }
+      else {
+        delay(1900);
+      }
+
+    }
       
     //Print Manual mode speed on LCD
     lcd.setCursor(0,0); 
@@ -231,4 +253,3 @@ void loop() {
       
   }
 }
-// Test comment to check github push/pull
